@@ -71,3 +71,11 @@ decrease this. If you experience stuttering, increase this.")
 
 ;; Let 'er rip!
 (require 'core (concat user-emacs-directory "core/core"))
+(require 'doom-themes)
+(require 'evil-magit)
+(require 'helm)
+(evil-collection-init)
+(setq doom-theme 'doom-molokai)
+
+(setq helm-ag-base-command "ag -i --vimgrep --ignore-dir wwwroot --ignore-dir dist --ignore-dir docs")
+(evil-ex-define-cmd "ls" 'helm-buffers-list)

@@ -36,6 +36,9 @@
 (package! smartparens)
 (package! undo-tree)
 (package! ws-butler)
+(package! magit)
+(package! evil-magit)
+(package! evil-collection)
 
 ;; core-projects.el
 (package! projectile)
