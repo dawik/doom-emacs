@@ -39,6 +39,9 @@
 (package! magit)
 (package! evil-magit)
 (package! evil-collection)
+(package! dumb-jump)
+(package! neotree)
+
 
 ;; core-projects.el
 (package! projectile)
