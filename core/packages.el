@@ -40,7 +40,10 @@
 (package! evil-magit)
 (package! evil-collection)
 (package! dumb-jump)
-(package! neotree)
+(package! helm-make)
+(package! treemacs)
+(package! treemacs-evil)
+(package! treemacs-projectile)
 
 
 ;; core-projects.el
