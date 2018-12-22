@@ -86,6 +86,11 @@ decrease this. If you experience stuttering, increase this.")
 (global-set-key [f8] 'magit-status)
 (global-set-key [f9] 'helm-make-projectile)
 (global-set-key [f9] 'helm-make-projectile)
+(global-set-key [C-right] 'windmove-right)
+(global-set-key [C-down] 'windmove-down)
+(global-set-key [C-left] 'windmove-left)
+(global-set-key [C-up] 'windmove-up)
+
 
 (setq helm-ag-base-command "ag -i --vimgrep --ignore-dir wwwroot --ignore-dir dist --ignore-dir docs")
 (evil-ex-define-cmd "ls" 'helm-buffers-list)
