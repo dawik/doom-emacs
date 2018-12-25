@@ -57,12 +57,12 @@
       :n "M-R"   #'+eval/region-and-replace
       :n "M-b"   #'+default/compile
       :n "M-a"   #'mark-whole-buffer
-      :n "M-c"   #'evil-yank
+      ;; :n "M-c"   #'evil-yank
       :n "M-q"   (if (daemonp) #'delete-frame #'evil-quit-all)
-      (:when (featurep! :completion helm)
-        :n "M-f" #'swiper-helm)
-      (:when (featurep! :completion ivy)
-        :n "M-f" #'swiper)
+      ;;(:when (featurep! :completion helm)
+        ;;:n "M-f" #'swiper-helm)
+      ;;(:when (featurep! :completion ivy)
+        ;;:n "M-f" #'swiper)
       :n  "M-s"   #'save-buffer
       :m  "A-j"   #'+default:multi-next-line
       :m  "A-k"   #'+default:multi-previous-line
