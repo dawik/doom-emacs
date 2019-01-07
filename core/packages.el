@@ -46,6 +46,9 @@
 (package! treemacs-projectile)
 (package! doom-themes)
 (package! helm-projectile)
+(package! helm-ag)
+(package! ag)
+(package! rjsx-mode)
 
 
 ;; core-projects.el
