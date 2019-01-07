@@ -79,7 +79,6 @@ decrease this. If you experience stuttering, increase this.")
 (setq dumb-jump-force-searcher 'ag)
 (require 'helm-projectile)
 (helm-projectile-on)
-(evil-collection-init)
 ;(setq dumb-jump-prefer-searcher 'rg)
 (setq doom-theme 'doom-vibrant)
 (global-unset-key (kbd "M-h"))
@@ -87,6 +86,8 @@ decrease this. If you experience stuttering, increase this.")
 (global-unset-key (kbd "M-k"))
 (global-unset-key (kbd "M-l"))
 (global-unset-key (kbd "M-o"))
+(global-unset-key (kbd "C-u"))
+(global-set-key (kbd "C-u") 'evil-scroll-up)
 (global-set-key (kbd "M-p") 'treemacs)
 (global-set-key (kbd "M-g") 'magit-status)
 (global-set-key (kbd "M-o") 'org-agenda)
@@ -100,6 +101,10 @@ decrease this. If you experience stuttering, increase this.")
 (evil-ex-define-cmd "ls" 'helm-buffers-list)
 (setq org-agenda-files '("~/org"))
 (setq system-time-locale "C")
+(setq evil-want-integration t) ;; This is optional since it's already set to t by default.
+(setq evil-want-keybinding nil)
+(evil-mode)
+(evil-collection-init)
 
 ; magit-status in current window
 (setq magit-display-buffer-function
@@ -114,3 +119,9 @@ decrease this. If you experience stuttering, increase this.")
                                  magit-status-mode)))
                     nil
                   '(display-buffer-same-window)))))
+
+(when (eq system-type 'darwin)
+  (setq mac-option-modifier nil
+        mac-command-modifier 'meta
+        x-select-enable-clipboard t)
+  )

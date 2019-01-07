@@ -36,7 +36,7 @@
 ;;
 ;; See core/autoload/packages.el for more functions.
 
-(defvar doom-packages ()
+(defvar doom-packages '()
   "A list of enabled packages. Each element is a sublist, whose CAR is the
 package's name as a symbol, and whose CDR is the plist supplied to its
 `package!' declaration. Set by `doom-initialize-packages'.")
