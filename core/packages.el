@@ -44,6 +44,8 @@
 (package! treemacs)
 (package! treemacs-evil)
 (package! treemacs-projectile)
+(package! doom-themes)
+(package! helm-projectile)
 
 
 ;; core-projects.el
