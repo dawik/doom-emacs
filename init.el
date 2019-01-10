@@ -131,7 +131,7 @@ decrease this. If you experience stuttering, increase this.")
         mac-command-modifier 'meta
         x-select-enable-clipboard t)
   )
-(load-file "~/.emacs.d/private/local/prettier-eslint-emacs/prettier-eslint.el")
+(load-file "~/.emacs.d/private/prettier-eslint.el")
 
 (defun my/use-eslint-from-node-modules ()
   (let* ((root (locate-dominating-file
