@@ -36,20 +36,6 @@
 (package! smartparens)
 (package! undo-tree)
 (package! ws-butler)
-(package! magit)
-(package! evil-magit)
-(package! evil-collection)
-(package! dumb-jump)
-(package! helm-make)
-(package! treemacs)
-(package! treemacs-evil)
-(package! treemacs-projectile)
-(package! doom-themes)
-(package! helm-projectile)
-(package! helm-ag)
-(package! ag)
-(package! rjsx-mode)
-
 
 ;; core-projects.el
 (package! projectile)
@@ -63,3 +49,19 @@
 
 ;; autoload/test.el
 (package! buttercup)
+
+;; goodies
+(package! magit)
+(package! evil-magit)
+(package! evil-collection)
+(package! dumb-jump)
+(package! helm-make)
+(package! treemacs)
+(package! treemacs-evil)
+(package! treemacs-projectile)
+(package! doom-themes)
+(package! helm-projectile)
+(package! helm-ag)
+(package! ag)
+(package! rjsx-mode)
+(package! erlang-mode)

@@ -78,6 +78,7 @@ decrease this. If you experience stuttering, increase this.")
 (setq dumb-jump-selector 'helm)
 (setq dumb-jump-force-searcher 'ag)
 (require 'helm-projectile)
+(require 'flycheck)
 (helm-projectile-on)
 ;(setq dumb-jump-prefer-searcher 'rg)
 (setq doom-theme 'doom-vibrant)
@@ -112,6 +113,13 @@ decrease this. If you experience stuttering, increase this.")
 (evil-mode)
 (evil-collection-init)
 
+;; erlang-mode
+(setq load-path (cons  "/usr/lib/erlang/lib/tools-3.0.1/emacs" load-path))
+(setq erlang-root-dir "/usr/lib/erlang")
+(setq exec-path (cons "/usr/lib/erlang/bin" exec-path))
+(require 'erlang-start)
+(require 'erlang-flymake)
+
 ; magit-status in current window
 (setq magit-display-buffer-function
       (lambda (buffer)
@@ -131,7 +139,6 @@ decrease this. If you experience stuttering, increase this.")
         mac-command-modifier 'meta
         x-select-enable-clipboard t)
   )
-(load-file "~/.emacs.d/private/prettier-eslint.el")
 
 (defun my/use-eslint-from-node-modules ()
   (let* ((root (locate-dominating-file
@@ -150,3 +157,4 @@ decrease this. If you experience stuttering, increase this.")
 (setq sgml-basic-offset 4)
 (add-to-list 'auto-mode-alist '("\\.js\\'" . rjsx-mode))
 (flycheck-add-mode 'javascript-eslint 'rjsx-mode)
+
