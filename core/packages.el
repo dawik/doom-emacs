@@ -53,7 +53,6 @@
 ;; goodies
 (package! magit)
 (package! evil-magit)
-(package! evil-collection)
 (package! dumb-jump)
 (package! helm-make)
 (package! treemacs)
