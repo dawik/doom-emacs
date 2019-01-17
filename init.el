@@ -119,12 +119,11 @@ decrease this. If you experience stuttering, increase this.")
 (evil-mode)
 (evil-collection-init)
 
-(when (require 'erlang-mode nil 'noerror)
+(when (require 'erlang nil 'noerror)
   (setq load-path (cons  "/usr/lib/erlang/lib/tools-3.0.1/emacs" load-path))
   (setq erlang-root-dir "/usr/lib/erlang")
   (setq exec-path (cons "/usr/lib/erlang/bin" exec-path))
-  (require 'erlang-start)
-  (require 'erlang-flymake))
+  (require 'erlang-start))
 
 ; magit-status in current window
 (setq magit-display-buffer-function
@@ -210,7 +209,7 @@ decrease this. If you experience stuttering, increase this.")
        ;;crystal           ; ruby at the speed of c
        ;;csharp            ; unity, .NET, and mono shenanigans
        data              ; config/data formats
-       ;;erlang            ; an elegant language for a more civilized age
+       erlang            ; an elegant language for a more civilized age
        ;;elixir            ; erlang done right
        ;;elm               ; care for a cup of TEA?
        emacs-lisp        ; drown in parentheses

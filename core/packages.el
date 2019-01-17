@@ -64,4 +64,3 @@
 (package! helm-ag)
 (package! ag)
 (package! rjsx-mode)
-(package! erlang-mode)
