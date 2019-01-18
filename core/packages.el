@@ -63,3 +63,5 @@
 (package! helm-ag)
 (package! ag)
 (package! rjsx-mode)
+(package! ace-jump-mode)
+(package! key-chord)

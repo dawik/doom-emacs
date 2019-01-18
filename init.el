@@ -96,7 +96,9 @@ decrease this. If you experience stuttering, increase this.")
 (global-unset-key (kbd "M-f"))
 (global-unset-key (kbd "M-e"))
 (global-unset-key (kbd "M-i"))
+(global-unset-key (kbd "M-b"))
 (global-unset-key (kbd "C-u"))
+(global-unset-key (kbd "C-c"))
 (global-set-key (kbd "C-u") 'evil-scroll-up)
 (global-set-key (kbd "M-p") 'treemacs)
 (global-set-key (kbd "M-g") 'magit-status)
@@ -110,13 +112,15 @@ decrease this. If you experience stuttering, increase this.")
 (global-set-key (kbd "M-j") 'windmove-down)
 (global-set-key (kbd "M-k") 'windmove-up)
 (global-set-key (kbd "M-l") 'windmove-right)
+(global-set-key (kbd "M-b") 'ido-switch-buffer)
+
 (setq helm-ag-base-command "ag -i --vimgrep --ignore-dir wwwroot --ignore-dir dist --ignore-dir docs")
 (setq org-agenda-files '("~/org"))
 (setq system-time-locale "C")
 (setq evil-want-integration t) ;; This is optional since it's already set to t by default.
 (setq evil-want-keybinding nil)
 (evil-mode)
-(evil-ex-define-cmd "ls" 'helm-buffers-list)
+(evil-ex-define-cmd "ls" 'buffer-menu)
 
 (when (require 'erlang nil 'noerror)
   (setq load-path (cons  "/usr/lib/erlang/lib/tools-3.0.1/emacs" load-path))
@@ -160,6 +164,44 @@ decrease this. If you experience stuttering, increase this.")
 (setq js-indent-level 4)
 (setq sgml-basic-offset 4)
 (add-to-list 'auto-mode-alist '("\\.js\\'" . rjsx-mode))
+
+(persp-mode)
+
+;;
+;; ace jump mode major function
+;;
+;;(add-to-list 'load-path "/full/path/where/ace-jump-mode.el/in/")
+(autoload
+  'ace-jump-mode
+  "ace-jump-mode"
+  "Emacs quick move minor mode"
+  t)
+
+
+
+;;
+;; enable a more powerful jump back function from ace jump mode
+;;
+(autoload
+  'ace-jump-mode-pop-mark
+  "ace-jump-mode"
+  "Ace jump back:-)"
+  t)
+(eval-after-load "ace-jump-mode"
+  '(ace-jump-mode-enable-mark-sync))
+
+
+
+(define-key evil-normal-state-map (kbd "SPC") 'ace-jump-mode)
+(define-key evil-normal-state-map (kbd "C-SPC") 'ace-jump-char-mode)
+(define-key global-map (kbd "C-x SPC") 'ace-jump-mode-pop-mark)
+
+
+;;Exit insert mode by pressing j and then j quickly
+(when (require 'key-chord nil 'noerror)
+  (setq key-chord-two-keys-delay 0.25)
+  (key-chord-define evil-insert-state-map "jj" 'evil-normal-state)
+  (key-chord-mode 1))
 
 (doom! :feature
        ;;debugger          ; FIXME stepping through code, to help you add bugs
@@ -278,5 +320,4 @@ decrease this. If you experience stuttering, increase this.")
        (default +bindings +evil-commands))
 
 (require! :ui doom-dashboard)
-(persp-mode)
 (add-hook 'window-setup-hook #'+doom-dashboard|init)
