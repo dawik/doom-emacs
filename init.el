@@ -71,7 +71,8 @@ decrease this. If you experience stuttering, increase this.")
 
 ;; Let 'er rip!
 (require 'core (concat user-emacs-directory "core/core"))
-;;(require 'evil-magit)
+(when (require 'evil-magit nil 'noerror)
+  (require 'evil-magit))
 (when (require 'dumb-jump nil 'noerror)
   (require 'dumb-jump)
   (dumb-jump-mode)
@@ -275,3 +276,7 @@ decrease this. If you experience stuttering, increase this.")
        ;; library, and additional ex commands for evil-mode. Use it as a
        ;; reference for your own modules.
        (default +bindings +evil-commands))
+
+(require! :ui doom-dashboard)
+(persp-mode)
+(add-hook 'window-setup-hook #'+doom-dashboard|init)
