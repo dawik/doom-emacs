@@ -102,7 +102,7 @@ decrease this. If you experience stuttering, increase this.")
 (global-set-key (kbd "C-u") 'evil-scroll-up)
 (global-set-key (kbd "M-p") 'treemacs)
 (global-set-key (kbd "M-g") 'magit-status)
-(global-set-key (kbd "M-f") 'helm-projectile-ag)
+(global-set-key (kbd "M-f") 'helm-projectile-grep)
 (global-set-key (kbd "M-i") 'helm-projectile-find-file)
 (global-set-key (kbd "M-o") 'org-agenda)
 (global-set-key (kbd "M-c") 'helm-make-projectile)
@@ -113,6 +113,8 @@ decrease this. If you experience stuttering, increase this.")
 (global-set-key (kbd "M-k") 'windmove-up)
 (global-set-key (kbd "M-l") 'windmove-right)
 (global-set-key (kbd "M-b") 'ido-switch-buffer)
+(global-set-key (kbd "M-x") 'helm-M-x)
+
 
 (setq helm-ag-base-command "ag -i --vimgrep --ignore-dir wwwroot --ignore-dir dist --ignore-dir docs")
 (setq org-agenda-files '("~/org"))
@@ -120,7 +122,8 @@ decrease this. If you experience stuttering, increase this.")
 (setq evil-want-integration t) ;; This is optional since it's already set to t by default.
 (setq evil-want-keybinding nil)
 (evil-mode)
-(evil-ex-define-cmd "ls" 'buffer-menu)
+(evil-ex-define-cmd "ls" 'helm-buffer-list)
+(define-key helm-map (kbd "ESC") 'helm-keyboard-quit)
 
 (when (require 'erlang nil 'noerror)
   (setq load-path (cons  "/usr/lib/erlang/lib/tools-3.0.1/emacs" load-path))
@@ -189,7 +192,6 @@ decrease this. If you experience stuttering, increase this.")
   t)
 (eval-after-load "ace-jump-mode"
   '(ace-jump-mode-enable-mark-sync))
-
 
 
 (define-key evil-normal-state-map (kbd "SPC") 'ace-jump-mode)
