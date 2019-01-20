@@ -107,13 +107,15 @@ decrease this. If you experience stuttering, increase this.")
 (global-set-key (kbd "M-o") 'org-agenda)
 (global-set-key (kbd "M-c") 'helm-make-projectile)
 (global-set-key (kbd "M-e") 'prettier-eslint)
-(global-set-key (kbd "C-s") 'swiper-helm)
+(global-set-key (kbd "C-s") 'helm-swoop-symble-pre-input)
 (global-set-key (kbd "M-h") 'windmove-left)
 (global-set-key (kbd "M-j") 'windmove-down)
 (global-set-key (kbd "M-k") 'windmove-up)
 (global-set-key (kbd "M-l") 'windmove-right)
 (global-set-key (kbd "M-b") 'ido-switch-buffer)
-(global-set-key (kbd "M-x") 'helm-M-x)
+;;(global-set-key (kbd "M-x") 'helm-M-x)
+(global-set-key (kbd "M-x") 'kill-buffer-and-window)
+
 
 
 (setq helm-ag-base-command "ag -i --vimgrep --ignore-dir wwwroot --ignore-dir dist --ignore-dir docs")
@@ -122,7 +124,6 @@ decrease this. If you experience stuttering, increase this.")
 (setq evil-want-integration t) ;; This is optional since it's already set to t by default.
 (setq evil-want-keybinding nil)
 (evil-mode)
-(evil-ex-define-cmd "ls" 'helm-buffer-list)
 (define-key helm-map (kbd "ESC") 'helm-keyboard-quit)
 
 (when (require 'erlang nil 'noerror)
@@ -197,6 +198,7 @@ decrease this. If you experience stuttering, increase this.")
 (define-key evil-normal-state-map (kbd "SPC") 'ace-jump-mode)
 (define-key evil-normal-state-map (kbd "C-SPC") 'ace-jump-char-mode)
 (define-key global-map (kbd "C-x SPC") 'ace-jump-mode-pop-mark)
+(evil-ex-define-cmd "ls" 'helm-buffers-list)
 
 
 ;;Exit insert mode by pressing j and then j quickly
