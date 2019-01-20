@@ -108,10 +108,10 @@ There are 2 possible values:
         :n [escape] #'delete-window
         :n "j"   #'treemacs-next-line
         :n "k"   #'treemacs-previous-line
-        :n "M-j" #'treemacs-next-neighbour
-        :n "M-k" #'treemacs-previous-neighbour
-        :n "M-J" #'treemacs-next-line-other-window
-        :n "M-K" #'treemacs-previous-line-other-window
+;;        :n "M-j" #'treemacs-next-neighbour
+;;        :n "M-k" #'treemacs-previous-neighbour
+;;        :n "M-J" #'treemacs-next-line-other-window
+ ;;       :n "M-K" #'treemacs-previous-line-other-window
         :n "th"  #'treemacs-toggle-show-dotfiles
         :n "tw"  #'treemacs-toggle-fixed-width
         :n "tv"  #'treemacs-fringe-indicator-mode
