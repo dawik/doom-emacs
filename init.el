@@ -80,6 +80,7 @@ decrease this. If you experience stuttering, increase this.")
   (setq dumb-jump-force-searcher 'ag)
   (setq dumb-jump-prefer-searcher 'ag))
 (when (require 'helm-projectile nil 'noerror)
+  (helm-projectile-on)
   (require 'helm-projectile))
 (when (require 'flycheck nil 'noerror)
   (require 'flycheck)
@@ -90,9 +91,20 @@ decrease this. If you experience stuttering, increase this.")
                 (setq indent-tabs-mode nil) ;;Use space instead of tab
                 (setq js2-strict-missing-semi-warning nil)))))
 (when (require 'helm-projectile nil 'noerror)
-  (helm-projectile-on))
-(when (require 'persp-mode nil 'noerror)
+  (when (require 'persp-mode nil 'noerror)
   (persp-mode))
+
+(add-hook 'rjsx-mode-hook
+          (defun my-js2-mode-setup ()
+            (flycheck-mode t)
+            (when (executable-find "eslint")
+              (flycheck-select-checker 'javascript-eslint))))
+
+(with-eval-after-load 'flycheck
+                      (require 'flycheck-flow)
+                      (flycheck-add-mode 'javascript-flow 'rjsx-mode)
+                      (flycheck-add-mode 'javascript-eslint 'rjsx-mode))
+
 (setq doom-theme 'doom-vibrant)
 (global-unset-key (kbd "M-h"))
 (global-unset-key (kbd "M-j"))

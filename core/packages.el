@@ -72,3 +72,4 @@
 (package! company-web)
 (package! css-mode)
 (package! tern)
+(package! flycheck-flow)
