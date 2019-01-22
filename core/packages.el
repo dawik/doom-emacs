@@ -65,3 +65,5 @@
 (package! rjsx-mode)
 (package! ace-jump-mode)
 (package! key-chord)
+(package! swoop)
+(package! helm-swoop)

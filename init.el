@@ -104,7 +104,7 @@ decrease this. If you experience stuttering, increase this.")
 (global-set-key (kbd "M-g") 'magit-status)
 (global-set-key (kbd "M-f") 'helm-projectile-grep)
 (global-set-key (kbd "M-i") 'helm-projectile-find-file)
-(global-set-key (kbd "M-o") 'org-agenda)
+(global-set-key (kbd "M-o") 'helm-projectile-switch-project)
 (global-set-key (kbd "M-c") 'helm-make-projectile)
 (global-set-key (kbd "M-e") 'prettier-eslint)
 (global-set-key (kbd "C-s") 'helm-swoop-symble-pre-input)
@@ -115,6 +115,7 @@ decrease this. If you experience stuttering, increase this.")
 (global-set-key (kbd "M-b") 'ido-switch-buffer)
 ;;(global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "M-x") 'kill-buffer-and-window)
+(global-set-key (kbd "M-s") 'helm-projectile-ag)
 
 
 
@@ -124,7 +125,7 @@ decrease this. If you experience stuttering, increase this.")
 (setq evil-want-integration t) ;; This is optional since it's already set to t by default.
 (setq evil-want-keybinding nil)
 (evil-mode)
-(define-key helm-map (kbd "ESC") 'helm-keyboard-quit)
+(define-key helm-map (kbd "<escape>") 'keyboard-quit)
 
 (when (require 'erlang nil 'noerror)
   (setq load-path (cons  "/usr/lib/erlang/lib/tools-3.0.1/emacs" load-path))
