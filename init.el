@@ -84,7 +84,11 @@ decrease this. If you experience stuttering, increase this.")
 (when (require 'flycheck nil 'noerror)
   (require 'flycheck)
   (when (require 'rjsx-mode nil 'noerror)
-    (flycheck-add-mode 'javascript-eslint 'rjsx-mode)))
+    (flycheck-add-mode 'javascript-eslint 'rjsx-mode)
+    (add-hook 'rjsx-mode-hook
+              (lambda ()
+                (setq indent-tabs-mode nil) ;;Use space instead of tab
+                (setq js2-strict-missing-semi-warning nil)))))
 (when (require 'helm-projectile nil 'noerror)
   (helm-projectile-on))
 (setq doom-theme 'doom-vibrant)
