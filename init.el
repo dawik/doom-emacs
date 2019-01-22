@@ -330,10 +330,10 @@ decrease this. If you experience stuttering, increase this.")
 (setq inhibit-startup-buffer-menu t)
 (setq not-to-kill-buffer-list '())
 (kill-buffer "*Messages*")
-(setq inhibit-startup-screen t
-      initial-buffer-choice 'recentf-open-files)
 (when (display-graphic-p)
-  (progn))
+  (progn)
+  (setq inhibit-startup-screen t
+        initial-buffer-choice 'recentf-open-files))
 (add-hook 'window-setup-hook 'delete-other-windows)
 (add-hook 'minibuffer-exit-hook
       '(lambda ()
