@@ -389,4 +389,4 @@ Version 2016-06-19"
 
 (global-set-key (kbd "M-n") 'xah-next-user-buffer)
 (global-set-key (kbd "M-p") 'xah-previous-user-buffer)
-
+(global-set-key (kbd "C-c") 'evil-normal-state)
