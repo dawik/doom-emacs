@@ -82,9 +82,9 @@ decrease this. If you experience stuttering, increase this.")
 (when (require 'helm-projectile nil 'noerror)
   (require 'helm-projectile))
 (when (require 'flycheck nil 'noerror)
-  (require 'flycheck))
-(when (require 'rjsx-mode nil 'noerror)
-  (flycheck-add-mode 'javascript-eslint 'rjsx-mode))
+  (require 'flycheck)
+  (when (require 'rjsx-mode nil 'noerror)
+    (flycheck-add-mode 'javascript-eslint 'rjsx-mode)))
 (when (require 'helm-projectile nil 'noerror)
   (helm-projectile-on))
 (setq doom-theme 'doom-vibrant)
@@ -169,8 +169,6 @@ decrease this. If you experience stuttering, increase this.")
 (setq js-indent-level 4)
 (setq sgml-basic-offset 4)
 (add-to-list 'auto-mode-alist '("\\.js\\'" . rjsx-mode))
-
-(persp-mode)
 
 ;;
 ;; ace jump mode major function
@@ -324,5 +322,14 @@ decrease this. If you experience stuttering, increase this.")
        ;; reference for your own modules.
        (default +bindings +evil-commands))
 
-(require! :ui doom-dashboard)
-(add-hook 'window-setup-hook #'+doom-dashboard|init)
+(when (require 'persp-mode nil 'noerror)
+  (persp-mode))
+
+
+(kill-buffer "*scratch*")
+(kill-buffer "*Messages*")
+
+(when (display-graphic-p)
+  (progn
+    (require! :ui doom-dashboard)
+    (add-hook 'window-setup-hook #'+doom-dashboard|init)))
