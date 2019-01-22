@@ -100,7 +100,7 @@ decrease this. If you experience stuttering, increase this.")
 (global-unset-key (kbd "C-u"))
 (global-unset-key (kbd "C-c"))
 (global-set-key (kbd "C-u") 'evil-scroll-up)
-(global-set-key (kbd "M-p") 'treemacs)
+(global-set-key (kbd "M-t") 'treemacs)
 (global-set-key (kbd "M-g") 'magit-status)
 (global-set-key (kbd "M-f") 'helm-projectile-grep)
 (global-set-key (kbd "M-i") 'helm-projectile-find-file)
@@ -312,7 +312,7 @@ decrease this. If you experience stuttering, increase this.")
        ;;impatient-mode    ; show off code over HTTP
 
        :config
-       ;; For literate config users. This will tangle+compile a config.org
+
        ;; literate config in your `doom-private-dir' whenever it changes.
        ;;literate
 
@@ -322,14 +322,71 @@ decrease this. If you experience stuttering, increase this.")
        ;; reference for your own modules.
        (default +bindings +evil-commands))
 
-(when (require 'persp-mode nil 'noerror)
-  (persp-mode))
+;;(when (require 'persp-mode nil 'noerror)
+;;  (persp-mode))
 
-
-(kill-buffer "*scratch*")
+(setq-default message-log-max nil)
+(setq initial-scratch-message "")
+(setq inhibit-startup-buffer-menu t)
+(setq not-to-kill-buffer-list '())
 (kill-buffer "*Messages*")
-
+(setq inhibit-startup-screen t
+      initial-buffer-choice 'recentf-open-files)
 (when (display-graphic-p)
-  (progn
-    (require! :ui doom-dashboard)
-    (add-hook 'window-setup-hook #'+doom-dashboard|init)))
+  (progn))
+(add-hook 'window-setup-hook 'delete-other-windows)
+(add-hook 'minibuffer-exit-hook
+      '(lambda ()
+         (let ((buffer "*Completions*"))
+           (and (get-buffer buffer)
+                (kill-buffer buffer)))))
+(setq helm-boring-buffer-regexp-list
+      (quote
+       (  "\\Minibuf.+\\*"
+               "\\` "
+               "\\*.+\\*"
+                  )))
+(defun xah-user-buffer-q ()
+  "Return t if current buffer is a user buffer, else nil.
+Typically, if buffer name starts with *, it's not considered a user buffer.
+This function is used by buffer switching command and close buffer command, so that next buffer shown is a user buffer.
+You can override this function to get your idea of “user buffer”.
+version 2016-06-18"
+  (interactive)
+  (if (string-equal "*" (substring (buffer-name) 0 1))
+      nil
+    (if (string-equal major-mode "dired-mode")
+        nil
+      t
+      )))
+(defun xah-next-user-buffer ()
+  "Switch to the next user buffer.
+“user buffer” is determined by `xah-user-buffer-q'.
+URL `http://ergoemacs.org/emacs/elisp_next_prev_user_buffer.html'
+Version 2016-06-19"
+  (interactive)
+  (next-buffer)
+  (let ((i 0))
+    (while (< i 20)
+      (if (not (xah-user-buffer-q))
+          (progn (next-buffer)
+                 (setq i (1+ i)))
+        (progn (setq i 100))))))
+
+(defun xah-previous-user-buffer ()
+  "Switch to the previous user buffer.
+“user buffer” is determined by `xah-user-buffer-q'.
+URL `http://ergoemacs.org/emacs/elisp_next_prev_user_buffer.html'
+Version 2016-06-19"
+  (interactive)
+  (previous-buffer)
+  (let ((i 0))
+    (while (< i 20)
+      (if (not (xah-user-buffer-q))
+          (progn (previous-buffer)
+                 (setq i (1+ i)))
+        (progn (setq i 100))))))
+
+(global-set-key (kbd "M-n") 'xah-next-user-buffer)
+(global-set-key (kbd "M-p") 'xah-previous-user-buffer)
+
