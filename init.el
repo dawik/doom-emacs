@@ -204,6 +204,9 @@ decrease this. If you experience stuttering, increase this.")
 (evil-ex-define-cmd "ls" 'helm-buffers-list)
 
 
+(when (require 'git-gutter nil 'noerror)
+  (global-git-gutter-mode +1))
+
 ;;Exit insert mode by pressing j and then j quickly
 (when (require 'key-chord nil 'noerror)
   (setq key-chord-two-keys-delay 0.25)

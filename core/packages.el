@@ -67,3 +67,4 @@
 (package! key-chord)
 (package! swoop)
 (package! helm-swoop)
+(package! git-gutter)
