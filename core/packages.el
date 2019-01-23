@@ -68,3 +68,7 @@
 (package! swoop)
 (package! helm-swoop)
 (package! git-gutter)
+(package! company-tern)
+(package! company-web)
+(package! css-mode)
+(package! tern)

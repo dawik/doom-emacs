@@ -226,7 +226,7 @@ decrease this. If you experience stuttering, increase this.")
        workspaces        ; tab emulation, persistence & separate workspaces
 
        :completion
-       company           ; the ultimate code completion backend
+       ;;company           ; the ultimate code completion backend
        helm              ; the *other* search engine for love and life
        ;;ido              ; the other *other* search engine...
        ;;ivy              ; a search engine for love and life
@@ -398,3 +398,7 @@ Version 2016-06-19"
 (global-set-key (kbd "M-p") 'xah-previous-user-buffer)
 (global-set-key (kbd "C-c") 'evil-normal-state)
 (define-key global-map (kbd "RET") 'newline-and-indent)
+
+(add-hook 'after-init-hook 'global-company-mode)
+
+(add-hook 'js-mode-hook 'tern-mode)
