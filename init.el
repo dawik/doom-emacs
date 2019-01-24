@@ -90,9 +90,6 @@ decrease this. If you experience stuttering, increase this.")
               (lambda ()
                 (setq indent-tabs-mode nil) ;;Use space instead of tab
                 (setq js2-strict-missing-semi-warning nil)))))
-(when (require 'helm-projectile nil 'noerror)
-  (when (require 'persp-mode nil 'noerror)
-  (persp-mode))
 
 (add-hook 'rjsx-mode-hook
           (defun my-js2-mode-setup ()
