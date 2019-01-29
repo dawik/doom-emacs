@@ -70,6 +70,7 @@ decrease this. If you experience stuttering, increase this.")
 
 
 ;; Let 'er rip!
+(setq use-package-always-ensure t)
 (require 'core (concat user-emacs-directory "core/core"))
 (when (require 'evil-magit nil 'noerror)
   (require 'evil-magit))
@@ -98,9 +99,11 @@ decrease this. If you experience stuttering, increase this.")
               (flycheck-select-checker 'javascript-eslint))))
 
 (with-eval-after-load 'flycheck
+(when (require 'flycheck-flow nil 'noerror)
                       (require 'flycheck-flow)
                       (flycheck-add-mode 'javascript-flow 'rjsx-mode)
                       (flycheck-add-mode 'javascript-eslint 'rjsx-mode))
+)
 
 (setq doom-theme 'doom-vibrant)
 (global-unset-key (kbd "M-h"))
