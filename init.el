@@ -420,3 +420,6 @@ Version 2016-06-19"
 (evil-set-initial-state 'info-mode 'normal)
 (setq evil-normal-state-modes (append evil-motion-state-modes evil-normal-state-modes))
 (setq evil-motion-state-modes nil)
+
+(define-key evil-normal-state-map (kbd "C-a") 'evil-numbers/inc-at-pt)
+(define-key evil-normal-state-map (kbd "C-x") 'evil-numbers/dec-at-pt)
