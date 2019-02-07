@@ -301,7 +301,7 @@ Version 2016-06-19"
 (global-set-key (kbd "M-d") 'enlarge-window)
 (global-set-key (kbd "M-D") 'shrink-window)
 (global-set-key (kbd "M-I") 'shrink-window-horizontally)
-(global-set-key (kbd "M-x") 'delete-window)
+(global-set-key (kbd "M-x") 'kill-buffer-and-window)
 (global-set-key (kbd "M-X") 'kill-emacs)
 (global-set-key (kbd "M-f") 'counsel-projectile-grep)
 (global-set-key (kbd "M-F") 'counsel-projectile-ag)
