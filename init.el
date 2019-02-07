@@ -105,7 +105,6 @@ decrease this. If you experience stuttering, increase this.")
                       (flycheck-add-mode 'javascript-eslint 'rjsx-mode))
 )
 
-(setq doom-theme 'doom-vibrant)
 
 
 
@@ -214,12 +213,6 @@ decrease this. If you experience stuttering, increase this.")
          (let ((buffer "*Completions*"))
            (and (get-buffer buffer)
                 (kill-buffer buffer)))))
-(setq helm-boring-buffer-regexp-list
-      (quote
-       (  "\\Minibuf.+\\*"
-               "\\` "
-               "\\*.+\\*"
-                  )))
 (defun xah-user-buffer-q ()
   "Return t if current buffer is a user buffer, else nil.
 Typically, if buffer name starts with *, it's not considered a user buffer.
@@ -263,17 +256,24 @@ Version 2016-06-19"
 
 
 (add-hook 'after-init-hook 'global-company-mode)
-
 (add-hook 'js-mode-hook 'tern-mode)
 
+(setq doom-theme 'doom-one)
+(setq ivy-height 11)
 (evil-set-initial-state 'info-mode 'normal)
 (setq evil-normal-state-modes (append evil-motion-state-modes evil-normal-state-modes))
 (setq evil-motion-state-modes nil)
 (setq confirm-kill-emacs nil)
 (setq confirm-kill-processes nil)
+(setq helm-boring-buffer-regexp-list
+      (quote
+       (  "\\Minibuf.+\\*"
+               "\\` "
+               "\\*.+\\*"
+                  )))
 (define-key evil-normal-state-map (kbd "C-a") 'evil-numbers/inc-at-pt)
 (define-key evil-normal-state-map (kbd "C-x") 'evil-numbers/dec-at-pt)
-(define-key evil-normal-state-map (kbd "/") 'helm-swoop-without-pre-input)
+(define-key evil-normal-state-map (kbd "/") 'swiper)
 (define-key evil-insert-state-map (kbd "RET") 'newline-and-indent)
 
 (global-unset-key (kbd "M-h"))
@@ -290,13 +290,13 @@ Version 2016-06-19"
 (global-unset-key (kbd "C-c"))
 
 (global-set-key (kbd "C-u") 'evil-scroll-up)
+(global-set-key (kbd "M-b") 'ivy-switch-buffer)
 (global-set-key (kbd "M-t") 'treemacs)
 (global-set-key (kbd "M-g") 'magit-status)
 (global-set-key (kbd "M-O") 'helm-projectile-switch-project)
 (global-set-key (kbd "M-o") 'helm-projectile-find-file)
 (global-set-key (kbd "M-c") 'helm-make-projectile)
 (global-set-key (kbd "M-e") 'prettier-eslint)
-(global-set-key (kbd "C-s") 'helm-swoop-symble-pre-input)
 (global-set-key (kbd "M-h") 'windmove-left)
 (global-set-key (kbd "M-j") 'windmove-down)
 (global-set-key (kbd "M-k") 'windmove-up)
@@ -306,7 +306,7 @@ Version 2016-06-19"
 (global-set-key (kbd "M-x") 'kill-buffer-and-window)
 (global-set-key (kbd "M-X") 'kill-emacs)
 (global-set-key (kbd "M-f") 'ace-jump-char-mode)
-(global-set-key (kbd "M-F") 'helm-multi-swoop-projectile)
+(global-set-key (kbd "M-F") 'swiper-multi)
 (global-set-key (kbd "M-s") 'helm-projectile-ag)
 (global-set-key (kbd "M-S") 'helm-projectile-grep)
 (global-set-key (kbd "M-w") 'save-buffer)
