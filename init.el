@@ -122,19 +122,6 @@ decrease this. If you experience stuttering, increase this.")
   (setq exec-path (cons "/usr/lib/erlang/bin" exec-path))
   (require 'erlang-start))
 
-; magit-status in current window
-(setq magit-display-buffer-function
-      (lambda (buffer)
-        (display-buffer
-         buffer (if (and (derived-mode-p 'magit-mode)
-                         (memq (with-current-buffer buffer major-mode)
-                               '(magit-process-mode
-                                 magit-revision-mode
-                                 magit-diff-mode
-                                 magit-stash-mode
-                                 magit-status-mode)))
-                    nil
-                  '(display-buffer-same-window)))))
 
 (when (eq system-type 'darwin)
   (setq mac-option-modifier nil
