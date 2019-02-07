@@ -120,7 +120,6 @@ decrease this. If you experience stuttering, increase this.")
 (setq evil-want-integration t) ;; This is optional since it's already set to t by default.
 (setq evil-want-keybinding nil)
 (evil-mode)
-(define-key helm-map (kbd "<escape>") 'keyboard-quit)
 
 (when (require 'erlang nil 'noerror)
   (setq load-path (cons  "/usr/lib/erlang/lib/tools-3.0.1/emacs" load-path))
@@ -263,6 +262,7 @@ Version 2016-06-19"
                "\\` "
                "\\*.+\\*"
                   )))
+(setq magit-completing-read-function 'ivy-completing-read)
 (define-key evil-normal-state-map (kbd "C-a") 'evil-numbers/inc-at-pt)
 (define-key evil-normal-state-map (kbd "C-x") 'evil-numbers/dec-at-pt)
 (define-key evil-normal-state-map (kbd "/") 'swiper)
@@ -282,6 +282,7 @@ Version 2016-06-19"
 (global-unset-key (kbd "C-u"))
 (global-unset-key (kbd "C-c"))
 
+(global-set-key (kbd "<escape>") 'keyboard-quit)
 (global-set-key (kbd "C-u") 'evil-scroll-up)
 (global-set-key (kbd "M-b") 'ivy-switch-buffer)
 (global-set-key (kbd "M-t") 'treemacs)
