@@ -255,7 +255,7 @@ Version 2016-06-19"
 ;(add-hook 'after-init-hook 'global-company-mode)
 (add-hook 'js-mode-hook 'tern-mode)
 
-(setq doom-theme 'doom-one)
+(setq doom-theme 'doom-nord-light)
 (evil-set-initial-state 'info-mode 'normal)
 (setq evil-normal-state-modes (append evil-motion-state-modes evil-normal-state-modes))
 (setq evil-motion-state-modes nil)
