@@ -255,7 +255,7 @@ Version 2016-06-19"
 ;(add-hook 'after-init-hook 'global-company-mode)
 (add-hook 'js-mode-hook 'tern-mode)
 
-(setq doom-theme 'doom-nord-light)
+(setq doom-theme 'doom-spacegrey)
 (evil-set-initial-state 'info-mode 'normal)
 (setq evil-normal-state-modes (append evil-motion-state-modes evil-normal-state-modes))
 (setq evil-motion-state-modes nil)
@@ -293,7 +293,7 @@ Version 2016-06-19"
 (global-set-key (kbd "M-t") 'treemacs)
 (global-set-key (kbd "M-g") 'magit-status)
 (global-set-key (kbd "M-O") 'counsel-projectile-switch-project)
-(global-set-key (kbd "M-o") 'counsel-find-file)
+(global-set-key (kbd "M-o") 'counsel-projectile-find-file)
 (global-set-key (kbd "M-c") 'helm-make-projectile)
 (global-set-key (kbd "M-e") 'prettier-eslint)
 (global-set-key (kbd "M-h") 'windmove-left)
