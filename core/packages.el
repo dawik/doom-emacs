@@ -51,6 +51,7 @@
 (package! buttercup)
 
 ;; goodies
+(package! auto-complete)
 (package! magit)
 (package! evil-magit)
 (package! dumb-jump)
@@ -65,8 +66,6 @@
 (package! key-chord)
 (package! swoop)
 (package! git-gutter)
-(package! company-tern)
-(package! company-web)
 (package! css-mode)
 (package! tern)
 (package! flycheck-flow)

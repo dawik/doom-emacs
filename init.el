@@ -183,6 +183,8 @@ decrease this. If you experience stuttering, increase this.")
 
 (when (require 'git-gutter nil 'noerror)
   (global-git-gutter-mode +1))
+(when (require 'auto-complete nil 'noerror)
+  (ac-config-default))
 
 ;;Exit insert mode by pressing j and then j quickly
 (when (require 'key-chord nil 'noerror)
@@ -232,6 +234,8 @@ Version 2016-06-19"
                  (setq i (1+ i)))
         (progn (setq i 100))))))
 
+
+
 (defun xah-previous-user-buffer ()
   "Switch to the previous user buffer.
 “user buffer” is determined by `xah-user-buffer-q'.
@@ -247,7 +251,8 @@ Version 2016-06-19"
         (progn (setq i 100))))))
 
 
-(add-hook 'after-init-hook 'global-company-mode)
+
+;(add-hook 'after-init-hook 'global-company-mode)
 (add-hook 'js-mode-hook 'tern-mode)
 
 (setq doom-theme 'doom-one)
@@ -310,6 +315,6 @@ Version 2016-06-19"
 (global-set-key (kbd "M-S") 'counsel-projectile-grep)
 (global-set-key (kbd "M-w") 'save-buffer)
 (global-set-key (kbd "M-W") 'save-buffers-kill-emacs)
-(global-set-key (kbd "M-n") 'xah-next-user-buffer)
-(global-set-key (kbd "M-p") 'xah-previous-user-buffer)
+(global-set-key (kbd "M-N") 'xah-next-user-buffer)
+(global-set-key (kbd "M-P") 'xah-previous-user-buffer)
 (global-set-key (kbd "C-c") 'evil-normal-state)
