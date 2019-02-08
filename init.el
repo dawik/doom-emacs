@@ -271,6 +271,8 @@ Version 2016-06-19"
 (define-key evil-normal-state-map (kbd "C-a") 'evil-numbers/inc-at-pt)
 (define-key evil-normal-state-map (kbd "C-x") 'evil-numbers/dec-at-pt)
 (define-key evil-normal-state-map (kbd "/") 'swiper)
+(define-key evil-normal-state-map (kbd "M-n") 'xah-next-user-buffer)
+(define-key evil-normal-state-map (kbd "M-p") 'xah-previous-user-buffer)
 (define-key evil-insert-state-map (kbd "RET") 'newline-and-indent)
 
 (global-unset-key (kbd "M-h"))
@@ -315,6 +317,4 @@ Version 2016-06-19"
 (global-set-key (kbd "M-S") 'counsel-projectile-grep)
 (global-set-key (kbd "M-w") 'save-buffer)
 (global-set-key (kbd "M-W") 'save-buffers-kill-emacs)
-(global-set-key (kbd "M-N") 'xah-next-user-buffer)
-(global-set-key (kbd "M-P") 'xah-previous-user-buffer)
 (global-set-key (kbd "C-c") 'evil-normal-state)
