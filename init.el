@@ -80,9 +80,6 @@ decrease this. If you experience stuttering, increase this.")
   (setq dumb-jump-selector 'helm)
   (setq dumb-jump-force-searcher 'ag)
   (setq dumb-jump-prefer-searcher 'ag))
-(when (require 'helm-projectile nil 'noerror)
-  (helm-projectile-on)
-  (require 'helm-projectile))
 (when (require 'flycheck nil 'noerror)
   (require 'flycheck)
   (when (require 'rjsx-mode nil 'noerror)
@@ -273,12 +270,6 @@ Version 2016-06-19"
 (setq evil-motion-state-modes nil)
 (setq confirm-kill-emacs nil)
 (setq confirm-kill-processes nil)
-(setq helm-boring-buffer-regexp-list
-      (quote
-       (  "\\Minibuf.+\\*"
-               "\\` "
-               "\\*.+\\*"
-                  )))
 (setq magit-completing-read-function 'ivy-completing-read)
 (define-key evil-normal-state-map (kbd "C-a") 'evil-numbers/inc-at-pt)
 (define-key evil-normal-state-map (kbd "C-x") 'evil-numbers/dec-at-pt)
@@ -303,6 +294,7 @@ Version 2016-06-19"
 
 (global-set-key (kbd "<escape>") 'keyboard-quit)
 (global-set-key (kbd "C-u") 'evil-scroll-up)
+(global-set-key (kbd "M-r") 'recentf-open-files)
 (global-set-key (kbd "M-b") 'electric-buffer-list)
 (global-set-key (kbd "M-t") 'treemacs)
 (global-set-key (kbd "M-g") 'magit-status)
