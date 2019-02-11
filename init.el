@@ -263,6 +263,7 @@ Version 2016-06-19"
 
 ;(add-hook 'after-init-hook 'global-company-mode)
 (add-hook 'js-mode-hook 'tern-mode)
+(add-hook 'js2-mode-hook 'auto-complete-mode)
 
 (setq doom-theme 'doom-spacegrey)
 (evil-set-initial-state 'info-mode 'normal)

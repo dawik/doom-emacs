@@ -69,6 +69,8 @@
 (package! css-mode)
 (package! tern)
 (package! flycheck-flow)
+(package! company-flow)
+(package! company)
 (package! ivy)
 (package! counsel)
 (package! counsel-projectile)
