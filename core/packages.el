@@ -76,3 +76,4 @@
 (package! counsel-projectile)
 (package! yasnippet)
 (package! react-snippets)
+(package! buffer-move)

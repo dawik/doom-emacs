@@ -279,6 +279,10 @@ Version 2016-06-19"
 (define-key evil-normal-state-map (kbd "M-p") 'xah-previous-user-buffer)
 (define-key evil-insert-state-map (kbd "RET") 'newline-and-indent)
 
+(global-unset-key (kbd "C-s"))
+(global-set-key (kbd "C-s M-l") 'hsplit-last-buffer)
+(global-set-key (kbd "C-s M-j") 'vsplit-last-buffer)
+
 (global-unset-key (kbd "M-h"))
 (global-unset-key (kbd "M-j"))
 (global-unset-key (kbd "M-k"))
@@ -292,6 +296,13 @@ Version 2016-06-19"
 (global-unset-key (kbd "M-w"))
 (global-unset-key (kbd "C-u"))
 (global-unset-key (kbd "C-c"))
+
+(when (require 'buffer-move nil 'noerror)
+  (require 'buffer-move))
+(global-set-key (kbd "M-k")     'buf-move-up)
+(global-set-key (kbd "M-j")   'buf-move-down)
+(global-set-key (kbd "M-h")   'buf-move-left)
+(global-set-key (kbd "M-l")  'buf-move-right)
 
 (global-set-key (kbd "<escape>") 'keyboard-quit)
 (global-set-key (kbd "C-u") 'evil-scroll-up)
@@ -307,8 +318,6 @@ Version 2016-06-19"
 (global-set-key (kbd "M-j") 'windmove-down)
 (global-set-key (kbd "M-k") 'windmove-up)
 (global-set-key (kbd "M-l") 'windmove-right)
-(global-set-key (kbd "M-L") 'hsplit-last-buffer)
-(global-set-key (kbd "M-J") 'vsplit-last-buffer)
 (global-set-key (kbd "M-i") 'enlarge-window-horizontally)
 (global-set-key (kbd "M-d") 'enlarge-window)
 (global-set-key (kbd "M-D") 'shrink-window)
