@@ -261,6 +261,8 @@ Version 2016-06-19"
   (require 'yasnippet)
   (yas-global-mode 1))
 
+(defun destroy-win() "Kill buffer and delete the window" (interactive) (kill-this-buffer) (delete-window))
+
 ;(add-hook 'after-init-hook 'global-company-mode)
 (add-hook 'js-mode-hook 'tern-mode)
 (add-hook 'js2-mode-hook 'auto-complete-mode)
@@ -280,8 +282,8 @@ Version 2016-06-19"
 (define-key evil-insert-state-map (kbd "RET") 'newline-and-indent)
 
 (global-unset-key (kbd "C-s"))
-(global-set-key (kbd "C-s M-l") 'hsplit-last-buffer)
-(global-set-key (kbd "C-s M-j") 'vsplit-last-buffer)
+(global-set-key (kbd "C-s l") 'hsplit-last-buffer)
+(global-set-key (kbd "C-s j") 'vsplit-last-buffer)
 
 (global-unset-key (kbd "M-h"))
 (global-unset-key (kbd "M-j"))
@@ -299,11 +301,10 @@ Version 2016-06-19"
 
 (when (require 'buffer-move nil 'noerror)
   (require 'buffer-move))
-(global-set-key (kbd "M-k")     'buf-move-up)
-(global-set-key (kbd "M-j")   'buf-move-down)
-(global-set-key (kbd "M-h")   'buf-move-left)
-(global-set-key (kbd "M-l")  'buf-move-right)
-
+(global-set-key (kbd "M-K")     'buf-move-up)
+(global-set-key (kbd "M-J")   'buf-move-down)
+(global-set-key (kbd "M-H")   'buf-move-left)
+(global-set-key (kbd "M-L")  'buf-move-right)
 (global-set-key (kbd "<escape>") 'keyboard-quit)
 (global-set-key (kbd "C-u") 'evil-scroll-up)
 (global-set-key (kbd "M-r") 'recentf-open-files)
@@ -322,7 +323,7 @@ Version 2016-06-19"
 (global-set-key (kbd "M-d") 'enlarge-window)
 (global-set-key (kbd "M-D") 'shrink-window)
 (global-set-key (kbd "M-I") 'shrink-window-horizontally)
-(global-set-key (kbd "M-x") 'delete-window)
+(global-set-key (kbd "M-x") 'destroy-win)
 (global-set-key (kbd "M-X") 'kill-emacs)
 (global-set-key (kbd "M-f") 'counsel-projectile-grep)
 (global-set-key (kbd "M-F") 'counsel-projectile-ag)
