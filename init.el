@@ -131,6 +131,11 @@ decrease this. If you experience stuttering, increase this.")
         x-select-enable-clipboard t)
   )
 
+
+;; slime
+(setq inferior-lisp-program "/usr/bin/sbcl")
+(setq slime-contribs '(slime-fancy))
+
 (defun my/use-eslint-from-node-modules ()
   (let* ((root (locate-dominating-file
                 (or (buffer-file-name) default-directory)
@@ -267,7 +272,7 @@ Version 2016-06-19"
 (add-hook 'js-mode-hook 'tern-mode)
 (add-hook 'js2-mode-hook 'auto-complete-mode)
 
-(setq doom-theme 'doom-spacegrey)
+(setq doom-theme 'doom-dracula)
 (evil-set-initial-state 'info-mode 'normal)
 (setq evil-normal-state-modes (append evil-motion-state-modes evil-normal-state-modes))
 (setq evil-motion-state-modes nil)

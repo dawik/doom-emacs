@@ -77,3 +77,4 @@
 (package! yasnippet)
 (package! react-snippets)
 (package! buffer-move)
+(package! slime)
