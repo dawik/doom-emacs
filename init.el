@@ -1,6 +1,6 @@
 ;;; init.el -*- lexical-binding: t; -*-
 ;;
-;; Author:  Henrik Lissner <henrik@lissner.net>
+;; Origin author:  Henrik Lissner <henrik@lissner.net>
 ;; URL:     https://github.com/hlissner/doom-emacs
 ;;
 ;;   =================     ===============     ===============   ========  ========
@@ -72,14 +72,12 @@ decrease this. If you experience stuttering, increase this.")
 ;; Let 'er rip!
 (setq use-package-always-ensure t)
 (require 'core (concat user-emacs-directory "core/core"))
+
+;; magit
 (when (require 'evil-magit nil 'noerror)
   (require 'evil-magit))
-(when (require 'dumb-jump nil 'noerror)
-  (require 'dumb-jump)
-  (dumb-jump-mode)
-  (setq dumb-jump-selector 'helm)
-  (setq dumb-jump-force-searcher 'ag)
-  (setq dumb-jump-prefer-searcher 'ag))
+
+;; rjsx+flycheck
 (when (require 'flycheck nil 'noerror)
   (require 'flycheck)
   (when (require 'rjsx-mode nil 'noerror)
@@ -96,46 +94,15 @@ decrease this. If you experience stuttering, increase this.")
               (flycheck-select-checker 'javascript-eslint))))
 
 (with-eval-after-load 'flycheck
-(when (require 'flycheck-flow nil 'noerror)
-                      (require 'flycheck-flow)
-                      (flycheck-add-mode 'javascript-flow 'rjsx-mode)
-                      (flycheck-add-mode 'javascript-eslint 'rjsx-mode))
-)
-
-(when (require 'ivy nil 'noerror)
-  (ivy-mode 1)
-  (setq ivy-use-virtual-buffers t)
-  (setq enable-recursive-minibuffers t)
-  (setq ivy-height 11)
-  (setq counsel-projectile-ag-initial-input '(projectile-symbol-or-selection-at-point)))
-
-
-
-(setq helm-ag-base-command "ag -i --vimgrep --ignore-dir wwwroot --ignore-dir dist --ignore-dir docs")
-(setq org-agenda-files '("~/org"))
-(setq system-time-locale "C")
-(setq evil-want-integration t) ;; This is optional since it's already set to t by default.
-(setq evil-want-keybinding nil)
-(evil-mode)
-
-(when (require 'erlang nil 'noerror)
-  (setq load-path (cons  "/usr/lib/erlang/lib/tools-3.0.1/emacs" load-path))
-  (setq erlang-root-dir "/usr/lib/erlang")
-  (setq exec-path (cons "/usr/lib/erlang/bin" exec-path))
-  (require 'erlang-start))
-
-
-(when (eq system-type 'darwin)
-  (setq mac-option-modifier nil
-        mac-command-modifier 'meta
-        x-select-enable-clipboard t)
+  (when (require 'flycheck-flow nil 'noerror)
+    (require 'flycheck-flow)
+    (flycheck-add-mode 'javascript-flow 'rjsx-mode)
+    (flycheck-add-mode 'javascript-eslint 'rjsx-mode))
   )
+(setq js-indent-level 4)
+(add-to-list 'auto-mode-alist '("\\.js\\'" . rjsx-mode))
 
-
-;; slime
-(setq inferior-lisp-program "/usr/bin/sbcl")
-(setq slime-contribs '(slime-fancy))
-
+;; eslint
 (defun my/use-eslint-from-node-modules ()
   (let* ((root (locate-dominating-file
                 (or (buffer-file-name) default-directory)
@@ -148,56 +115,65 @@ decrease this. If you experience stuttering, increase this.")
 
 (add-hook 'flycheck-mode-hook #'my/use-eslint-from-node-modules)
 
+;; ivy
+(when (require 'ivy nil 'noerror)
+  (ivy-mode 1)
+  (setq magit-completing-read-function 'ivy-completing-read)
+  (setq ivy-use-virtual-buffers t)
+  (setq enable-recursive-minibuffers t)
+  (setq ivy-height 11)
+  (setq counsel-projectile-ag-initial-input '(projectile-symbol-or-selection-at-point)))
+
+;; stuff
+(setq helm-ag-base-command "ag -i --vimgrep --ignore-dir wwwroot --ignore-dir dist --ignore-dir docs")
+(setq org-agenda-files '("~/org"))
+(setq system-time-locale "C")
+(setq evil-want-integration t)
+(setq evil-want-keybinding nil)
+(evil-mode)
 (setq indent-level 4)
-(setq js-indent-level 4)
 (setq sgml-basic-offset 4)
-(add-to-list 'auto-mode-alist '("\\.js\\'" . rjsx-mode))
+(setq-default message-log-max nil)
+(setq initial-scratch-message "")
+(setq inhibit-startup-buffer-menu t)
+(setq not-to-kill-buffer-list '())
 
-;;
-;; ace jump mode major function
-;;
-;;(add-to-list 'load-path "/full/path/where/ace-jump-mode.el/in/")
-(autoload
-  'ace-jump-mode
-  "ace-jump-mode"
-  "Emacs quick move minor mode"
-  t)
-
-
-
-;;
-;; enable a more powerful jump back function from ace jump mode
-;;
-(autoload
-  'ace-jump-mode-pop-mark
-  "ace-jump-mode"
-  "Ace jump back:-)"
-  t)
-(eval-after-load "ace-jump-mode"
-  '(ace-jump-mode-enable-mark-sync))
-
-
-(define-key evil-normal-state-map (kbd "SPC") 'ace-jump-mode)
-(define-key evil-normal-state-map (kbd "C-SPC") 'ace-jump-char-mode)
-(define-key global-map (kbd "C-x SPC") 'ace-jump-mode-pop-mark)
 (evil-ex-define-cmd "ls" 'helm-buffers-list)
 
+;; erlang
+(when (require 'erlang nil 'noerror)
+  (setq load-path (cons  "/usr/lib/erlang/lib/tools-3.0.1/emacs" load-path))
+  (setq erlang-root-dir "/usr/lib/erlang")
+  (setq exec-path (cons "/usr/lib/erlang/bin" exec-path))
+  (require 'erlang-start))
 
+
+;; change meta for mac
+(when (eq system-type 'darwin)
+  (setq mac-option-modifier nil
+        mac-command-modifier 'meta
+        x-select-enable-clipboard t)
+  )
+
+;; slime
+(setq inferior-lisp-program "/usr/bin/sbcl")
+(setq slime-contribs '(slime-fancy))
+
+;; git-gutter
 (when (require 'git-gutter nil 'noerror)
   (global-git-gutter-mode +1))
+
+;; auto-complete
 (when (require 'auto-complete nil 'noerror)
   (ac-config-default))
 
-;;Exit insert mode by pressing j and then j quickly
+;; exit insert mode by jj
 (when (require 'key-chord nil 'noerror)
   (setq key-chord-two-keys-delay 0.25)
   (key-chord-define evil-insert-state-map "jj" 'evil-normal-state)
   (key-chord-mode 1))
 
-(setq-default message-log-max nil)
-(setq initial-scratch-message "")
-(setq inhibit-startup-buffer-menu t)
-(setq not-to-kill-buffer-list '())
+;; kill default buffers
 (kill-buffer "*Messages*")
 (when (display-graphic-p)
   (progn)
@@ -205,16 +181,13 @@ decrease this. If you experience stuttering, increase this.")
         initial-buffer-choice 'recentf-open-files))
 (add-hook 'window-setup-hook 'delete-other-windows)
 (add-hook 'minibuffer-exit-hook
-      '(lambda ()
-         (let ((buffer "*Completions*"))
-           (and (get-buffer buffer)
-                (kill-buffer buffer)))))
+          '(lambda ()
+             (let ((buffer "*Completions*"))
+               (and (get-buffer buffer)
+                    (kill-buffer buffer)))))
+
+;; switch user buffers
 (defun xah-user-buffer-q ()
-  "Return t if current buffer is a user buffer, else nil.
-Typically, if buffer name starts with *, it's not considered a user buffer.
-This function is used by buffer switching command and close buffer command, so that next buffer shown is a user buffer.
-You can override this function to get your idea of “user buffer”.
-version 2016-06-18"
   (interactive)
   (if (string-equal "*" (substring (buffer-name) 0 1))
       nil
@@ -223,10 +196,6 @@ version 2016-06-18"
       t
       )))
 (defun xah-next-user-buffer ()
-  "Switch to the next user buffer.
-“user buffer” is determined by `xah-user-buffer-q'.
-URL `http://ergoemacs.org/emacs/elisp_next_prev_user_buffer.html'
-Version 2016-06-19"
   (interactive)
   (next-buffer)
   (let ((i 0))
@@ -239,10 +208,6 @@ Version 2016-06-19"
 
 
 (defun xah-previous-user-buffer ()
-  "Switch to the previous user buffer.
-“user buffer” is determined by `xah-user-buffer-q'.
-URL `http://ergoemacs.org/emacs/elisp_next_prev_user_buffer.html'
-Version 2016-06-19"
   (interactive)
   (previous-buffer)
   (let ((i 0))
@@ -268,7 +233,7 @@ Version 2016-06-19"
 
 (defun destroy-win() "Kill buffer and delete the window" (interactive) (kill-this-buffer) (delete-window))
 
-;(add-hook 'after-init-hook 'global-company-mode)
+                                        ;(add-hook 'after-init-hook 'global-company-mode)
 (add-hook 'js-mode-hook 'tern-mode)
 (add-hook 'js2-mode-hook 'auto-complete-mode)
 
@@ -278,7 +243,11 @@ Version 2016-06-19"
 (setq evil-motion-state-modes nil)
 (setq confirm-kill-emacs nil)
 (setq confirm-kill-processes nil)
-(setq magit-completing-read-function 'ivy-completing-read)
+
+(when (require 'buffer-move nil 'noerror)
+  (require 'buffer-move))
+
+;; keys
 (define-key evil-normal-state-map (kbd "C-a") 'evil-numbers/inc-at-pt)
 (define-key evil-normal-state-map (kbd "C-x") 'evil-numbers/dec-at-pt)
 (define-key evil-normal-state-map (kbd "/") 'swiper)
@@ -287,9 +256,6 @@ Version 2016-06-19"
 (define-key evil-insert-state-map (kbd "RET") 'newline-and-indent)
 
 (global-unset-key (kbd "C-s"))
-(global-set-key (kbd "C-s l") 'hsplit-last-buffer)
-(global-set-key (kbd "C-s j") 'vsplit-last-buffer)
-
 (global-unset-key (kbd "M-h"))
 (global-unset-key (kbd "M-j"))
 (global-unset-key (kbd "M-k"))
@@ -304,8 +270,6 @@ Version 2016-06-19"
 (global-unset-key (kbd "C-u"))
 (global-unset-key (kbd "C-c"))
 
-(when (require 'buffer-move nil 'noerror)
-  (require 'buffer-move))
 (global-set-key (kbd "M-K")     'buf-move-up)
 (global-set-key (kbd "M-J")   'buf-move-down)
 (global-set-key (kbd "M-H")   'buf-move-left)
@@ -338,3 +302,5 @@ Version 2016-06-19"
 (global-set-key (kbd "M-w") 'save-buffer)
 (global-set-key (kbd "M-W") 'save-buffers-kill-emacs)
 (global-set-key (kbd "C-c") 'evil-normal-state)
+(global-set-key (kbd "C-s l") 'hsplit-last-buffer)
+(global-set-key (kbd "C-s j") 'vsplit-last-buffer)
